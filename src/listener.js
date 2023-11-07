@@ -1,6 +1,5 @@
 Webex = require('webex');
 
-const http = require('http');
 const { fonts } = require('../util/fonts');
 
 
@@ -8,8 +7,6 @@ var axios = require("axios"); // Promise based HTTP client for node.js to send H
 const https = require('https');
 
 
-const logger = require("../logger");
-const moment = require("moment");
 
 // Smartsheet module and client initialization
 var client = require("smartsheet");

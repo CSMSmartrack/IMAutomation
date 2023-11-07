@@ -460,10 +460,10 @@ function _forwardEvent(event_object) {
         
 
         //Creation of tenant
-        imsFunctions.createTenant(inputs.accountName, appCenter)
+        //imsFunctions.createTenant(inputs.accountName, appCenter)
 
         //Creation of customer
-        imsFunctions.createCustomer(inputs.accountName, inputs.partnerName, partnerName.customerContact, services)
+        //imsFunctions.createCustomer(inputs.accountName, inputs.partnerName, partnerName.customerContact, services)
 
     }).catch(error => {    
         console.log(error);

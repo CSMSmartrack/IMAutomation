@@ -199,16 +199,7 @@ function _forwardEvent(event_object) {
 	
 	
     var sheetId = 4551015933470596
-	
-	
-	  var config = {
-		method: "get",
-		url: "https://api.smartsheet.com/2.0/sheets/" + sheetId + "/rows/" + rowId,
-		headers: {
-		  Authorization: "Bearer M7h8g1OVabn2BR2G5nfAhaT9QkyPOM0KX0924",
-		}
-    }
-		
+			
 	
 	//var fetchRowResp = await axios(config)
 
@@ -355,7 +346,124 @@ function _forwardEvent(event_object) {
         }
 
         console.log("DATA: ", mdObj)
-        console.log("DATA: ", JSON.stringify(mdObj))
+
+
+        var appCenter
+        var services=["Portal", "Inbound", "Outbound", "Flow Control", "Agent Application", "Analyzer", "Call Recording"]
+
+        if(mdObj.mediaLayer = "RTMS"){
+          services.push("RTMS")
+        }
+
+        switch(mdObj.addOns){
+          case "Acqueon":
+            services.push("Outbound Campaigns")
+            break;
+          
+          case "Calabrio/WFO":
+            services.push("WFO/WFM/Calabrio")
+            break;
+
+          case "Inference":
+            services.push("Inference")
+            break;
+
+          default:
+        }
+
+        switch(mdObj.features){
+          case "BRE":
+            services.push("Business Rules Engine")
+            break;
+          
+          case "CCAI Virtual Agent":
+            services.push("Google Voice Virtual Agent")
+            break;
+
+          case "TTS":
+            services.push("Google Text To Speech")
+            break;
+
+          default:
+        }
+
+        
+        switch(mdObj.channels){
+          case "SMS":
+            services.push("SMS - IMI")
+            break;
+          
+          case "Chat - Digital":
+            services.push("Chat - IMI")
+            break;
+
+          case "Email - Digital":
+            services.push("Email - IMI")
+            break;
+          
+          case "Facebook":
+            services.push("FB - IMI")
+            break;
+
+          default:
+        }
+
+        switch(mdObj.server){
+          case "PRODCA1":
+            appCenter="WxCC 2.0 CA1"
+            break;
+          case "PRODUS1":
+            appCenter="WxCC 2.0 US1"
+            break;
+          case "PRODEU1":
+            appCenter="WxCC 2.0 EU1"
+            break;
+          case "PRODEU2":
+            appCenter="WxCC 2.0 EU1"
+            break;
+          case "PRODJP1":
+            appCenter="WxCC 2.0 JP1"
+            break;
+          case "PRODANZ1":
+            appCenter="WxCC 2.0 ANZ1"
+            break;
+          default:
+            appCenter="ERROR"
+        }
+
+
+        //Creation of partner
+        //imsFunctions.createPartner(inputs.partnerName, inputs.partnerCsmEmail)
+        mdObj.partnerName="testGorka999"
+        mdObj.partnerCSMEmail="testGorka999@gmail.com"
+
+        var body=
+        {
+            "universal_partner_id" : "NA",
+            "name" : mdObj.partnerName,
+            "type" : "SP",
+            "email" : mdObj.partnerCSMEmail,
+            "primary_psam": "NA",
+            "secondary_psam": "NA",
+        } 
+
+        axios.get("https://solas-ims-lnx.cisco.com/api/partners", {
+            auth: {
+                username: "im_smartrack",
+                password: 'GasC1scoIPCC123!#'
+            },
+            data:body
+        }).then(resp => {
+            console.log(resp)
+        })
+
+        
+
+        //Creation of tenant
+        imsFunctions.createTenant(inputs.accountName, appCenter)
+
+        //Creation of customer
+        imsFunctions.createCustomer(inputs.accountName, inputs.partnerName, partnerName.customerContact, services)
 
     }).catch(error => {    
         console.log(error);

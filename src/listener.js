@@ -10,7 +10,6 @@ const https = require('https');
 
 // Smartsheet module and client initialization
 var client = require("smartsheet");
-const { NotExtended } = require("http-errors");
 var smartsheet = client.createClient({ accessToken: "Bearer M7h8g1OVabn2BR2G5nfAhaT9QkyPOM0KX0924" });
 
 

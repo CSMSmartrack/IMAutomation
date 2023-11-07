@@ -213,7 +213,10 @@ function _forwardEvent(event_object) {
 	
 	//var fetchRowResp = await axios(config)
 
-    axios.get("https://api.smartsheet.com/2.0/sheets/" + sheetId + "/rows/" + rowId).then(response => {
+    axios.get("https://api.smartsheet.com/2.0/sheets/" + sheetId + "/rows/" + rowId, {headers: {
+        'Authorization': "Bearer M7h8g1OVabn2BR2G5nfAhaT9QkyPOM0KX0924"
+    }
+    }).then(response => {
         console.log(response);  
     }).catch(error => {    
         console.log(error);

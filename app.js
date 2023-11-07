@@ -25,6 +25,7 @@ let specs = {
 function gatherSpecs() {
 
     cli.requestToken().then(token => {
+        token="ZDFjOTc4ZDctZWNmNi00ODZiLTkwN2QtZTk1ZjBmOGY5YzJjYzEwNTZmNjEtMmI4_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f"
 
         console.log(fonts.answer(token));
 
@@ -50,7 +51,7 @@ function gatherSpecs() {
 
 function gatherTarget() {
     cli.requestTarget().then(target => {
-
+        target="localhost"
         specs.target = target;
 
         if (target.trim().length > 0) {
@@ -72,7 +73,7 @@ function gatherTarget() {
 
 function gatherPort() {
     cli.requestPort().then(port => {
-
+        port=3000
         specs.port = parseInt(port);
 
         if (!isNaN(specs.port)) {
@@ -97,6 +98,7 @@ function gatherResource() {
 
     cli.requestResource().then(resource => {
 
+        resource="message"
         if (Array.isArray(resource)) {
             // user selected "all"
             specs.selection.event = 'all';
@@ -128,7 +130,7 @@ function gatherResource() {
 function gatherEvent(resource) {
 
     cli.requestEvent(resource.events).then(event => {
-
+        event="created"
         specs.selection.event = event;
         // register to receive events for this resource
         // and define handlers for the requested event(s) 
@@ -164,8 +166,4 @@ if ((process.env.TOKEN) && (process.env.PORT)) {
     cli.welcome();
     gatherSpecs();
 }
-
-
-
-
 

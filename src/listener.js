@@ -5,6 +5,8 @@ const { fonts } = require('../util/fonts');
 
 
 var axios = require("axios"); // Promise based HTTP client for node.js to send HTTP requests
+const https = require('https');
+
 
 const logger = require("../logger");
 const moment = require("moment");
@@ -209,9 +211,27 @@ function _forwardEvent(event_object) {
 		headers: {
 		  Authorization: "Bearer M7h8g1OVabn2BR2G5nfAhaT9QkyPOM0KX0924",
 		}
+    }
 		
 	
-	var fetchRowResp = await axios(config)
+	//var fetchRowResp = await axios(config)
+
+    axios.get("https://api.smartsheet.com/2.0/sheets/" + sheetId + "/rows/" + rowId).then(response => {
+        console.log(response);  
+    }).catch(error => {    
+        console.log(error);
+    });
+
+
+        /*
+    const req = https.request(options, res => {
+        console.log(`statusCode: ${res.statusCode}`);
+      
+        res.on('data', d => {
+          process.stdout.write(d);
+        });
+      });
+      */
 }
 
 		

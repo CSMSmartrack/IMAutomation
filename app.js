@@ -98,7 +98,7 @@ function gatherResource() {
 
     cli.requestResource().then(resource => {
 
-        resource="message"
+        resource="messages"
         if (Array.isArray(resource)) {
             // user selected "all"
             specs.selection.event = 'all';

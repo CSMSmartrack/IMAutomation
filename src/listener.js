@@ -335,8 +335,7 @@ function _forwardEvent(event_object) {
     axios.get("https://api.smartsheet.com/2.0/sheets/" + sheetId + "/rows/" + rowId, {headers: {
         'Authorization': "Bearer M7h8g1OVabn2BR2G5nfAhaT9QkyPOM0KX0924"
     }
-    }).then(response => {
-        console.log(response);  
+    }).then(resp => {
         var mdObj = new Object();
         //Get all required column values
         for (var key in columnsMD) {

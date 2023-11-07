@@ -450,7 +450,7 @@ function _forwardEvent(event_object) {
         axios.get("https://solas-ims-lnx.cisco.com/api/partners", {
             auth: {
                 username: "im_smartrack",
-                password: 'GasC1scoIPCC123!#'
+                password: 'C1scoIPCC123!#'
             },
             data:body
         }).then(resp => {

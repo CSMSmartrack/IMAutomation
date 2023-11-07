@@ -130,7 +130,7 @@ function gatherResource() {
 function gatherEvent(resource) {
 
     cli.requestEvent(resource.events).then(event => {
-        event="c"
+        event="created"
         specs.selection.event = event;
         // register to receive events for this resource
         // and define handlers for the requested event(s) 

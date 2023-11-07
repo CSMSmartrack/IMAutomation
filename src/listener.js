@@ -212,11 +212,152 @@ function _forwardEvent(event_object) {
 	
 	//var fetchRowResp = await axios(config)
 
+    var columnsMD=
+  {
+      "inProduction" : 4219677250480004, // prod MasterData In Production 
+      "accountName" : 5908527110743940, // ACCOUNT NAME
+      "partnerName" : 5345577157322628, // Partner Name
+      "region" : 2195414876219268, // Region
+      "migratedFrom" : 3466239367505796, // Migrated From
+      "migratedFromOther" : 3217921538320260, // Migrated from Non-Cisco On-Prem?
+      "csmEffort" : 8590265706407812, // CSM Effort
+      "a2qApprovedDate" : 3428692658546564, // A2Q Approved
+      "csmAssignedDate" : 1642410917816196,
+      "kickoffDate" : 6471477064165252,
+      "tenantCreatedDate" : 5162671847827332,
+      "voiceConfiguredDate" : 2910872034142084,
+      "tenantDeliveredDate" : 3196114875770756,
+      "uatCompletedDate" : 1784972127299460,
+      "expectedGoLiveDate" : 8160326924429188, // "Phase 1 Go-Live Date TARGET"
+      "actualGoLiveDateP1" : 3677017964078980, // "Phase 1 Go-Live Date ACTUAL"
+      "actualGoLiveDateP2": 7315901994297220, // Phase 2 Go-Live Date (projected or actual)
+      "telephony" : 2194901837342596, // Telephony Option
+      "primaryCSM" : 8230470254126980, // Primary CSM
+      "secondaryCSM" : 8861334306613124, // Secondary CSM
+      "version" : 8659204723500932,
+      "agentsOrdered" : 7597376971007876, //  Agents Ordered
+      "standAgentsOrdered" : 5709935175591812, //  Standard Agents Ordered
+      "premAgentsOrdered" : 3458135361906564, //  Premium Agents Ordered
+      "subscriptionId" : 2660201875695492, //  Subscription  (WxCC Only)
+      "subscriptionTerm" : 1319631221745540, //  Subscription Term (mos)
+      "autoRenewTerm" : 8390554496067460, //  Auto Renewal Term
+      "orderStatus" : 3195331419629444,// Order Status
+      "licenseType" : 5768612146374532, //  License Type (Named/Concurrent)
+      "newEndDateTime" : 7274761721014148, // "New Subscription End Date"
+      "renewdAtEndofTerm" : 2771162093643652, // "Renewed at End of Term?"        
+      "tryBuy" : 3168941982934916, // "Try and Buy?"
+      "mrrMonthlyCost" : 959117586130820, // "MRR (Total Monthly Cost)"
+      "mrrCurrency" : 3915936013019012, // "MRR Currency"
+
+      "mrrIVRAgnet" : 8277466980607876, // "MRR (IVR + Agents)"
+      "mrrTotalAddons" : 3674038578505604, // "MRR Add-ons"
+      "mrrTotalIMI" : 8177638205876100, // "MRR Digital Channels"
+      "TotalIvrPorts" : 5925838392190852, // "IVR Ports"
+      "addonsOrdered" : 859288811399044, // "Add-ons (Ordered)"
+      "channelsOrdered" : 5362888438769540, // "WxCC Channels (Ordered)"
+
+      
+      "server" : 50794662782852, // App Center
+      "a2qId" : 8283912226006916, // A2Q ID
+      "orgID" : 7163801503065988,
+      "time2Production" : 771902286391172,
+      "channels" : 2807474561542020, // WxCC Channels (Live)
+      "features" : 7311074188912516, // Features (Live)
+      "addons" : 1681574654699396, // Add-ons (Live)  
+      "crmIntegration" : 6698501464713092, // Integration (Live)        
+      "security" : 4688497822984068, // Security Settings (Live)
+      "initStartDateTime" : 2235319390785412, // Initial Subscription Start Date
+      "initEndDateTime" : 6949130755958660, // Initial Subscription End Date
+      "ccwBsft" : 7122111681587076, // prod From A2Q - Order Platform
+      "orderId" : 1492612147373956, // prod BSFT Quote ID, CC1 Deal ID or CCW Weborder ID
+      "partnerCSM" : 16121819621252, // prod Partner CSM
+      "salesContact" : 5890119719774084, // prod Sales Contact
+      "partnerContact" : 1614723180455812, // prod Partner Sponsor
+      //"partnerContactEmail" : 6118322807826308, // prod Partner Sponsor Contact Info
+      "accountSentiment" : 3656727297058692, // prod Account Sentiment
+      "onboardingStatus" : 8244880704071556, // prod Onboarding Status
+      "overallComplete" : 1686402460084100, // prod Overall % Complete
+      "cancellationRisk" : 8861815842072452, // prod Cancellation Risk
+      "statusSummary" : 8441801901139844, // prod Status Summary
+      "orderDate" : 496430398891908, // prod ORDER DATE
+      "engagementStatus" : 2812302366926724, // prod "ENGAGEMENT STATUS"
+      "cancelDate" : 8687422121764740, // "Cancel Date"
+      "segment" : 7824914410432388, // "Segment"
+      "vertical" : 6699014503589764, // "Vertical"
+      "goLiveMonth" : 8088125844023172, // "Go-Live Month"
+      "goLiveYear" : 769776449546116, // "Go-Live Year"
+      "goLiveQtr" : 3407855186405252, // "Go-Live Qtr"
+      "cancelReason" : 276829052397444, // "Cancel Reason"
+      "time2Deliver" : 8731279748294532, // "Time2Deliver"
+      "daysSinceOrder" : 5405199591335812, // "DaysSinceOrder"
+      "daysSinceKickoff" : 4244321470834564, // "DaysSinceKickoff"
+      "time2Provision" : 8090251680868228, // "Time2Provision"
+      "goLiveLapse" : 8747921098205060, // "GoLive_Lapse"
+      "duration" : 70947823740804, // "Duration"
+      "customerContact" : 142707988424580, // "Customer Sponsor"
+      //"customerContactEmail" : 4646307615795076, // "Customer Sponsor Contact Info"
+      "tcv" : 8948438275516292, // "TCV"
+      "mediaLayer": 4366121827258244, //Media Layer
+      
+      "setupAssist" : 2411372520728452, // Setup Assist
+      "setupAssistDeploymentType" : 4902198538725252, // Setup Assist Deployment Type
+      "setupAssistEngineer" : 1285472613885828, // Setup Assist - CX Deployment Engineer
+      "setupAssistProjectManager" : 2650398725040004, // Setup Assist - CX Project Manager
+      "setupAssistWOID" : 5789072241256324, // Setup Assist WOID
+      "serviceType" : 1524498818197380, // Day2 Service Type
+     
+
+      "partnerOnboardingResponse" : 1870893840394116, // Partner Onb/Mig NPI
+      "customerOnboardingResponse" : 6374493467764612, // Cust Onb/Mig NPI
+      "partnerEngagementResponse" : 4122693654079364, // Partner Engag NPI
+      "customerEngagementResponse" : 8626293281449860, // Cust Engag NPI
+      "customerUnsubscribe":3872599721699204, // Customer Unsubscribed
+      "partnerUnsubscribe":6124399535384452, // Partner Unsubscribed
+      "partnerOnboardingSentDate" : 463518956840836, // Partner Onb Sent
+      "customerOnboardingSentDate" : 4967118584211332, // Customer Onb Sent
+      "partnerEngagementSentDate" : 2715318770526084, // Partner Engag Sent
+      "customerEngagementSentDate" : 7218918397896580, // Customer Engag Sent
+      "partnerOnboardingRetry" : 5585788322768772, // Parter Onb Retries
+      "customerOnboardingRetry" : 7837588136454020, // Cust Onb Retries
+      "partnerEngagementRetry" : 3333988509083524, // Parter Engag Retries
+      "customerEngagementRetry" : 2208088602240900, // Customer Engag Retries
+      "webexMsgId" : 5844488027432836, // Webex MSG ID
+      "webexCardMsgId" : 3219427017680772, // Webex Card MsgID
+      "gartnerPeerReview" : 4504640521824132, //Gartner Peer Review
+      "reachForgartnerReview" : 2986801545144196, // Reach Out For Gartner Peer Review
+      
+      //"customerCCWName" : 581029270081412, // Customer Name from CCW
+      "bookedQty" : 5982800045887364, // Agent Ordered (original booked qty)
+      "agentsOrderedGoLive" : 8709262800801668,   // Agents Ordered (At Go Live)     
+
+  };
+
     axios.get("https://api.smartsheet.com/2.0/sheets/" + sheetId + "/rows/" + rowId, {headers: {
         'Authorization': "Bearer M7h8g1OVabn2BR2G5nfAhaT9QkyPOM0KX0924"
     }
     }).then(response => {
         console.log(response);  
+        var mdObj = new Object();
+        //Get all required column values
+        for (var key in columnsMD) {
+            if (key == "migratedFrom" || key == "migratedFromOther" || key == "csmEffort") {
+              mdObj[key] = resp.data.cells.filter((col) => col.columnId == columnsMD[key])[0].displayValue;
+            } else if (key == "primaryCSM" || key == "secondaryCSM") {
+              mdObj[key] = resp.data.cells.filter((col) => col.columnId == columnsMD[key])[0];
+            } else if (key == "partnerCSM" || key == "partnerContact" || key == "customerContact") {
+              mdObj[key] = resp.data.cells.filter((col) => col.columnId == columnsMD[key])[0].displayValue;
+              mdObj[key + "Email"] = resp.data.cells.filter((col) => col.columnId == columnsMD[key])[0].value;
+      
+              // mdObj[key].value = resp.data.cells.filter((col) => col.columnId == columnsMD[key])[0].value;
+              // mdObj[key].displayValue = resp.data.cells.filter((col) => col.columnId == columnsMD[key])[0].displayValue;
+            } else {
+              mdObj[key] = resp.data.cells.filter((col) => col.columnId == columnsMD[key])[0].value;
+            }
+        }
+
+        console.log("DATA: ", mdObj)
+        console.log("DATA: ", JSON.stringify(mdObj))
+
     }).catch(error => {    
         console.log(error);
     });

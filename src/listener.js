@@ -440,9 +440,9 @@ function _forwardEvent(event_object) {
         var body=
         {
             "universal_partner_id" : "NA",
-            "name" : mdObj.partnerName,
+            "name" : "testGorka999",
             "type" : "SP",
-            "email" : mdObj.partnerCSMEmail,
+            "email" : "testGorka999@gmail.com",
             "primary_psam": "NA",
             "secondary_psam": "NA",
         } 
@@ -451,8 +451,7 @@ function _forwardEvent(event_object) {
             auth: {
                 username: "im_smartrack",
                 password: 'C1scoIPCC123!#'
-            },
-            data:body
+            }
         }).then(resp => {
             console.log(resp)
         })

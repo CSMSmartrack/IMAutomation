@@ -447,6 +447,7 @@ function _forwardEvent(event_object) {
             "secondary_psam": "NA",
         } 
 
+        /*
         axios.get("https://solas-ims-lnx.cisco.com/api/partners", {
             auth: {
                 username: "im_smartrack",
@@ -454,9 +455,18 @@ function _forwardEvent(event_object) {
             }
         }).then(resp => {
             console.log(resp)
-        })
+        })*/
 
-        
+        var url="https://solas-ims-lnx.cisco.com/api/partners"
+
+        https.get(url, (res) => {
+        console.log(`statusCode: ${res.statusCode}`);
+      
+        res.on('data', d => {
+          console.log(`data: ${d}`);
+        });
+      });
+      
 
         //Creation of tenant
         //imsFunctions.createTenant(inputs.accountName, appCenter)
@@ -469,15 +479,8 @@ function _forwardEvent(event_object) {
     });
 
 
-        /*
-    const req = https.request(options, res => {
-        console.log(`statusCode: ${res.statusCode}`);
-      
-        res.on('data', d => {
-          process.stdout.write(d);
-        });
-      });
-      */
+        
+
 }
 
 		

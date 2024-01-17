@@ -25,14 +25,13 @@ let specs = {
 function gatherSpecs() {
 
     cli.requestToken().then(token => {
-        token="ZDFjOTc4ZDctZWNmNi00ODZiLTkwN2QtZTk1ZjBmOGY5YzJjYzEwNTZmNjEtMmI4_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f"
 
-        console.log(fonts.answer(token));
+        console.log(fonts.answer(process.env.TOKEN));
 
         listener.verifyAccessToken(token).then((person) => {
 
             console.log(fonts.info(`token authenticated as ${person.displayName}`));
-            specs.access_token = token;
+            specs.access_token = process.env.TOKEN;
             gatherTarget();
 
         }).catch(
@@ -141,7 +140,6 @@ function gatherEvent(resource) {
     });
 }
 
-process.env.TOKEN="ZDFjOTc4ZDctZWNmNi00ODZiLTkwN2QtZTk1ZjBmOGY5YzJjYzEwNTZmNjEtMmI4_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f"
 process.env.PORT=3000
 
 if ((process.env.TOKEN) && (process.env.PORT)) {

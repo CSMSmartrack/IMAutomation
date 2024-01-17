@@ -10,7 +10,7 @@ const https = require('https');
 
 // Smartsheet module and client initialization
 var client = require("smartsheet");
-var smartsheet = client.createClient({ accessToken: "Bearer M7h8g1OVabn2BR2G5nfAhaT9QkyPOM0KX0924" });
+var smartsheet = client.createClient({ accessToken: process.env.SM_TOKEN });
 
 
 let webex;
@@ -192,7 +192,8 @@ function _forwardEvent(event_object) {
       req.end();
   */
   console.log(fonts.info(`event forwarded to ${specifications.target}:${specifications.port}`));
-  console.log(fonts.info(event));
+
+  logger.info(`Event received for row ${rowId}: ${fonts.info(event)}`);
 
   var rowId = event_object.data.text
 
@@ -346,7 +347,7 @@ function _forwardEvent(event_object) {
       }
     }
 
-    console.log("DATA: ", mdObj)
+    logger.debug("Customer data: ", mdObj);
 
 
     var appCenter
@@ -491,80 +492,63 @@ function _forwardEvent(event_object) {
       "servers": []
     }
 
-    var username = 'gantonas';
-    var password = 'Gas210494!';
-    var basicAuth = 'Basic ' + btoa(username + ':' + password);
+    var username = process.env.IMS_USER;
+    var password = process.env.IMS_PSW;
+    //var basicAuth = 'Basic ' + btoa(username + ':' + password);
 
 
     axios.post("https://solas-ims-lnx.cisco.com/api/partners", bodyPartner, {
       auth: {
-        username: "gantonas",
-        password: 'Gas210494!'
+        username: process.env.IMS_USER,
+        password: process.env.IMS_PSW
       },
     }).then(resp => {
       console.log(resp.data)
+      logger.info("Partner entry successfully created");
 
-      axios.post("https://solas-ims-lnx.cisco.com/api/tenants", bodyTenant,{
+      axios.post("https://solas-ims-lnx.cisco.com/api/tenants", bodyTenant, {
         auth: {
-          username: "gantonas",
-          password: 'Gas210494!'
+          username: process.env.IMS_USER,
+          password: process.env.IMS_PSW
         },
       }).then(resp => {
         console.log(resp.data)
+        logger.info("Tenant entry successfully created");
 
 
         axios.post("https://solas-ims-lnx.cisco.com/api/customers", bodyCustomer, {
           auth: {
-            username: "gantonas",
-            password: 'Gas210494!'
+            username: process.env.IMS_USER,
+            password: process.env.IMS_PSW
           }
-        })
-      })
-
-      /*  
-        axios.get("https://solas-ims-lnx.cisco.com/api/partners", {
-            auth: {
-                username: "im_smartrack",
-                password: 'C1scoIPCC123!#'
-            }
         }).then(resp => {
-            console.log(resp)
+          console.log(resp.data)
+          logger.info("Customer entry successfully created");
+
+          return webex.messages.create({
+            text: "IMS Entry was successfully created for " + mdObj.accountName,
+            roomId: "Y2lzY29zcGFyazovL3VzL1JPT00vNDE5NTRjYjAtZGRlYi0xMWVkLTkwMjgtZmY0NWY4NTFlNTlh"
+          });
+
         })
 
-
-        var url="https://solas-ims-lnx.cisco.com/api/partners"
-
-        https.get(url, (res) => {
-        console.log(`statusCode: ${res.statusCode}`);
-      
-        res.on('data', d => {
-          console.log(`data: ${d}`);
-        });
-      });*/
-
-
-      //Creation of tenant
-      //imsFunctions.createTenant(inputs.accountName, appCenter)
-
-      //Creation of customer
-      //imsFunctions.createCustomer(inputs.accountName, inputs.partnerName, partnerName.customerContact, services)
-
-    }).catch(error => {
-      console.log(error);
-    });
+      }).catch(error => {
+        console.log(error);
+      });
 
 
 
 
-  
 
 
+
+    })
   })
+
+
 }
 
-
-
 module.exports = {
-      runListener,
-      verifyAccessToken
-    };
+  runListener,
+  verifyAccessToken
+}

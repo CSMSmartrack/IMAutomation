@@ -11,11 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "asciiart-logo": "^0.2.6",
+    "axios": "^0.21.4",
     "chalk": "^2.4.2",
     "clear": "^0.1.0",
-    "webex": "^1.80.154",
-    "axios": "^0.21.4",
     "smartsheet": "^1.5.0",
+    "webex": "^1.80.154",
     "winston": "^3.8.2"
   }
 }

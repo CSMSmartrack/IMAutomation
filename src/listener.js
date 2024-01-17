@@ -432,54 +432,103 @@ function _forwardEvent(event_object) {
         }
 
 
-        //Creation of partner
-        //imsFunctions.createPartner(inputs.partnerName, inputs.partnerCsmEmail)
-        mdObj.partnerName="testGorka999"
-        mdObj.partnerCSMEmail="testGorka999@gmail.com"
+            //Creation of partner
+    //imsFunctions.createPartner(inputs.partnerName, inputs.partnerCsmEmail)
+    mdObj.partnerName = "testGorka9999"
+    mdObj.partnerCSMEmail = "testGorka999@gmail.com"
+    mdObj.accountName = "testAccountGorka9999"
+    mdObj.customerContactEmail = "testCustomerGorka999@gmail.com"
 
-        var body=
-        {
-            "universal_partner_id" : "NA",
-            "name" : "testGorka999",
-            "type" : "SP",
-            "email" : "testGorka999@gmail.com",
-            "primary_psam": "NA",
-            "secondary_psam": "NA",
-        } 
 
-        /*
-        axios.get("https://solas-ims-lnx.cisco.com/api/partners", {
-            auth: {
-                username: "im_smartrack",
-                password: 'C1scoIPCC123!#'
-            }
-        }).then(resp => {
-            console.log(resp)
-        })*/
+var username="im_smartrack"
+var password="C1scoIPCC123!#"
+var basicAuth = 'Basic ' + btoa(username + ':' + password);
 
-        var url="https://solas-ims-lnx.cisco.com/api/partners"
+    var bodyPartner =
+    {
+      "universal_partner_id": "NA",
+      "name": mdObj.partnerName,
+      "type": "SP",
+      "email": mdObj.partnerCSMEmail,
+      "primary_psam": "NA",
+      "secondary_psam": "NA",
+    }
 
-        https.get(url, (res) => {
-        console.log(`statusCode: ${res.statusCode}`);
-      
-        res.on('data', d => {
-          console.log(`data: ${d}`);
-        });
-      });
-      
+    var bodyTenant =
+    {
+      "name": mdObj.accountName,
+      "appcenter": appCenter,
+    }
 
-        //Creation of tenant
-        //imsFunctions.createTenant(inputs.accountName, appCenter)
+    var bodyCustomer =
+    {
+      "name": mdObj.accountName,
+      "email": mdObj.customerContactEmail,
+      "executive_contact": "",
+      "tenant_name": mdObj.accountName,
+      "contact_preference": "Both",
+      "services": [
+        "Inbound",
+        "Outbound",
+        "Call Recording",
+        "Analyzer",
+        "Agent Application",
+        "Portal",
+        "Flow Control",
+        "Enhanced Agent Desktop"
+      ],
+      "account_name": mdObj.accountName,
+      "primary_csam": "NA",
+      "secondary_csam": "NA",
+      "engagement_status": "Live",
+      "production_status": "YES",
+      "version": "WebexCC 2.0",
+      "partner_name": mdObj.partnerName,
+      "sentiment": "GREEN",
+      "a2q_id": "NA",
+      "agents_ordered": 0,
+      "agents_deployed": 0,
+      "telephony_option": "Webex Calling",
+      "crm_integration": "NA",
+      "on_boarding_status": "Live",
+      "universal_customer_id": "",
+      "servers": []
+    }
 
-        //Creation of customer
-        //imsFunctions.createCustomer(inputs.accountName, inputs.partnerName, partnerName.customerContact, services)
 
+    axios.post("https://solas-ims-lnx.cisco.com/api/partners", bodyPartner, {
+      auth:{
+       username:"im_smartrack",
+       password:"C1scoIPCC123!#"
+
+      }
+    }).then(resp => {
+      console.log(resp.data)
+
+      axios.post("https://solas-ims-lnx.cisco.com/api/tenants", bodyTenant, {
+        auth: {
+          username: "im_smartrack",
+          password: 'C1scoIPCC123!#'
+        },
+        data: bodyTenant
+      }).then(resp => {
+        console.log(resp.data)
+
+
+        axios.post("https://solas-ims-lnx.cisco.com/api/customers", bodyCustomer, {
+          auth: {
+            username: "im_smartrack",
+            password: 'C1scoIPCC123!#'
+          },
+          data: bodyCustomer
+        })
+      })
     }).catch(error => {    
         console.log(error);
     });
 
 
-        
+ })        
 
 }
 

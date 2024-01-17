@@ -141,6 +141,8 @@ function gatherEvent(resource) {
     });
 }
 
+process.env.TOKEN="ZDFjOTc4ZDctZWNmNi00ODZiLTkwN2QtZTk1ZjBmOGY5YzJjYzEwNTZmNjEtMmI4_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f"
+process.env.PORT=3000
 
 if ((process.env.TOKEN) && (process.env.PORT)) {
     specs.access_token = process.env.TOKEN;
@@ -154,9 +156,12 @@ if ((process.env.TOKEN) && (process.env.PORT)) {
         console.log(fonts.info(`token authenticated as ${person.displayName}`));
         console.log(fonts.info(`forwarding target set as ${specs.target}`));
         specs.selection.event = 'all';
+        listener.runListener(specs, cli.options.messages)
+        /*
         for (let resource_object of cli.firehose_resource_names) {
             listener.runListener(specs, cli.options[resource_object]);
         }
+        */
     }).catch(reason => {
         //token not authorized
         console.log(fonts.error(reason));
